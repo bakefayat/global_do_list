@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model as users
 
 
 class Todos(models.Model):
@@ -13,7 +13,9 @@ class Todos(models.Model):
         ("un", "اقدام نشده"),
     )
     title = models.TextField(max_length=100, verbose_name='عنوان')
-    destination = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=None, verbose_name='وظیفه کاربر')
+    creator = models.ForeignKey(users(), on_delete=models.SET_NULL, related_name="tasks", null=True,
+                                default=None, verbose_name='سازنده')
+    destination = models.ForeignKey(users(), on_delete=models.CASCADE, default=None, verbose_name='وظیفه کاربر')
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='un', verbose_name='وضعیت')
 
     def __str__(self):
