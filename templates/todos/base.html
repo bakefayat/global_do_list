@@ -38,7 +38,7 @@
               </div>
 
               <div class="col-12">
-                <button type="submit" class="btn btn-primary">ذخیره</button>
+                <button type="submit" class="btn btn-primary">ثبت</button>
               </div>
 
             </form>
@@ -53,33 +53,31 @@
                 </tr>
               </thead>
               <tbody>
+              {% for item in items %}
                 <tr>
-                  <th scope="row">1</th>
-                  <td>Buy groceries for next week</td>
-                  <td>In progress</td>
+                  <th scope="row">{{ forloop.counter }}</th>
                   <td>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="submit" class="btn btn-success ms-1">Finished</button>
+                      {% if item.status == 'co' %}
+                          <del>{{ item.title }}</del>
+                      {% else %}
+                          {{ item.title }}
+                      {% endif %}
+                  </td>
+                    <td>
+                     {% if item.status == 'co' %}
+                         انجام شده
+                     {% elif item.status == 'on' %}
+                         در دست اقدام
+                    {% elif item.status == 'un' %}
+                         اقدام نشده
+                     </td>
+                    {% endif %}
+                  <td>
+                    <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
+                    <button type="submit" class="btn btn-danger">حذف</button>
                   </td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Renew car insurance</td>
-                  <td>In progress</td>
-                  <td>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="submit" class="btn btn-success ms-1">Finished</button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Sign up for online course</td>
-                  <td>In progress</td>
-                  <td>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    <button type="submit" class="btn btn-success ms-1">Finished</button>
-                  </td>
-                </tr>
+              {% endfor %}
               </tbody>
             </table>
 
