@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import View
+
+from .forms import TodosForm
 from .models import Todos
 # Create your views here.
 
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
+        todo_form = TodosForm()
         todo_items = Todos.objects.all()
-        return render(request, "todos/base.html", {'items': todo_items})
+        context = {'form': todo_form, 'items': todo_items}
+        return render(request, "todos/base.html", context)
