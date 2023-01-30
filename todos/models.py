@@ -14,8 +14,8 @@ class Todos(models.Model):
     )
     title = models.TextField(max_length=100, verbose_name='عنوان')
     creator = models.ForeignKey(users(), on_delete=models.SET_NULL, related_name="tasks", null=True,
-                                default=None, verbose_name='سازنده')
-    destination = models.ForeignKey(users(), on_delete=models.CASCADE, default=None, verbose_name='وظیفه کاربر')
+                                blank=True, verbose_name='سازنده')
+    destination = models.ForeignKey(users(), on_delete=models.CASCADE, null=True, blank=True, verbose_name='وظیفه کاربر')
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='un', verbose_name='وضعیت')
 
     def __str__(self):
