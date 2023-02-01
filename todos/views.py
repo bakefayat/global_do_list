@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
 from core.utils import create_new_task
@@ -21,3 +21,10 @@ class TodosView(View):
         todo_items = Todos.objects.all()
         context = {'form': todo_form, 'items': todo_items}
         return render(request, "todos/base.html", context)
+
+
+def delete_todo(request, pk):
+    todo = get_object_or_404(Todos, pk=pk)
+    todo.delete()
+
+    return redirect('todos:todos_view')

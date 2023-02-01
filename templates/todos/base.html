@@ -73,8 +73,10 @@
                      </td>
                     {% endif %}
                   <td>
-                    <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
-                    <button type="submit" class="btn btn-danger">حذف</button>
+                      <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
+                    <form class="d-inline" action="{% url 'todos:delete_todo' item.id %}">
+                      <button type="submit" class="btn btn-danger">حذف</button>
+                    </form>
                   </td>
                 </tr>
               {% endfor %}
