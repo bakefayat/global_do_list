@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View
+from django.views.generic import View, RedirectView
 
 from core.utils import create_new_task
 from .forms import TodosForm
@@ -23,8 +23,10 @@ class TodosView(View):
         return render(request, "todos/base.html", context)
 
 
-def delete_todo(request, pk):
-    todo = get_object_or_404(Todos, pk=pk)
-    todo.delete()
+class DeleteTodo(RedirectView):
+    pattern_name = 'todos:todos_view'
 
-    return redirect('todos:todos_view')
+    def get_redirect_url(self, *args, **kwargs):
+        todo = get_object_or_404(Todos, pk=kwargs['pk'])
+        todo.delete()
+        return super().get_redirect_url()

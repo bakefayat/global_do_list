@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import TodosView, delete_todo
+from .views import TodosView, DeleteTodo
 
 app_name = 'todos'
 
 urlpatterns = [
     path("", TodosView.as_view(), name='todos_view'),
-    path("delete/<int:pk>", delete_todo, name='delete_todo'),
+    path("delete/<int:pk>", DeleteTodo.as_view(), name='delete_todo'),
 ]
