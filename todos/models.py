@@ -8,15 +8,14 @@ class Todos(models.Model):
         verbose_name_plural = 'وظایف'
 
     STATUS_CHOICES = (
-        ("co", "انجام شده"),
-        ("on", "در دست اقدام"),
-        ("un", "اقدام نشده"),
+        (0, "انجام شده"),
+        (1, "در دست اقدام"),
     )
     title = models.TextField(max_length=100, verbose_name='عنوان')
     creator = models.ForeignKey(users(), on_delete=models.SET_NULL, related_name="tasks", null=True,
                                 blank=True, verbose_name='سازنده')
     destination = models.ForeignKey(users(), on_delete=models.CASCADE, null=True, blank=True, verbose_name='وظیفه کاربر')
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='un', verbose_name='وضعیت')
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=0, verbose_name='وضعیت')
 
     def __str__(self):
         return self.title

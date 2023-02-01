@@ -58,19 +58,17 @@
                 <tr>
                   <th scope="row">{{ forloop.counter }}</th>
                   <td>
-                      {% if item.status == 'co' %}
+                      {% if item.status == '1' %}
                           <del>{{ item.title }}</del>
                       {% else %}
                           {{ item.title }}
                       {% endif %}
                   </td>
                     <td>
-                     {% if item.status == 'co' %}
+                     {% if item.status == '1' %}
                          انجام شده
-                     {% elif item.status == 'on' %}
-                         در دست اقدام
-                    {% elif item.status == 'un' %}
-                         اقدام نشده
+                    {% elif item.status == '0' %}
+                         انجام نشده
                      </td>
                     {% endif %}
                   <td>

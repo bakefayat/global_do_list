@@ -37,6 +37,6 @@ class ChangeStatus(RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         todo = get_object_or_404(Todos, pk=kwargs['pk'])
-        todo.status = 'co'
+        todo.status = 1
         todo.save()
         return super().get_redirect_url()
