@@ -30,3 +30,13 @@ class DeleteTodo(RedirectView):
         todo = get_object_or_404(Todos, pk=kwargs['pk'])
         todo.delete()
         return super().get_redirect_url()
+
+
+class ChangeStatus(RedirectView):
+    pattern_name = 'todos:todos_view'
+
+    def get_redirect_url(self, *args, **kwargs):
+        todo = get_object_or_404(Todos, pk=kwargs['pk'])
+        todo.status = 'co'
+        todo.save()
+        return super().get_redirect_url()
