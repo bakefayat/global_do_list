@@ -42,7 +42,7 @@
               </div>
 
             </form>
-
+            {% if items %}
             <table class="table mb-4">
               <thead>
                 <tr>
@@ -53,6 +53,7 @@
                 </tr>
               </thead>
               <tbody>
+              {% endif %}
               {% for item in items %}
                 <tr>
                   <th scope="row">{{ forloop.counter }}</th>
@@ -73,12 +74,16 @@
                      </td>
                     {% endif %}
                   <td>
-                      <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
+                    <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
+                        <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
+                    </form>
                     <form class="d-inline" action="{% url 'todos:delete_todo' item.id %}">
                       <button type="submit" class="btn btn-danger">حذف</button>
                     </form>
                   </td>
                 </tr>
+                {% empty %}
+                تسکی فعلا وجود نداره! نظرت چیه اولین تسک ات رو اضافه کنی؟
               {% endfor %}
               </tbody>
             </table>
