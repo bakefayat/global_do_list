@@ -1,0 +1,62 @@
+{% extends 'todos/base.html' %}
+{% block main %}
+    <h4 class="text-center my-3 pb-3">کارهای روزانه</h4>
+
+    <form method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+        {% csrf_token %}
+      <div class="col-12">
+        <div class="form-outline">
+          <input type="text" name="title" id="form1" class="form-control" />
+          <label class="form-label" for="form1">کاری را وارد کنید</label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">ثبت</button>
+      </div>
+
+    </form>
+    {% if items %}
+    <table class="table mb-4">
+      <thead>
+        <tr>
+          <th scope="col">شماره</th>
+          <th scope="col">توضیح</th>
+          <th scope="col">تغییر وضعیت</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% endif %}
+      {% for item in items %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+              {% if item.status == 1 %}
+                  <td>
+                      <del>{{ item.title }}</del>
+                  </td>
+                  <td>
+                    <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
+                    <button type="submit" class="btn btn-success ms-1">هنوز مونده</button>
+                  </form>
+
+              {% else %}
+                <td>
+                  {{ item.title }}
+                </td>
+                <td>
+                  <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
+                    <button type="submit" class="btn btn-success ms-1">تمومش کردم!</button>
+                  </form>
+              {% endif %}
+
+            <form class="d-inline" action="{% url 'todos:delete_todo' item.unique_id %}">
+              <button type="submit" class="btn btn-danger">حذف</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        تسکی فعلا وجود نداره! نظرت چیه اولین تسک ات رو اضافه کنی؟
+      {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

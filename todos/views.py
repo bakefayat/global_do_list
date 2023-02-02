@@ -12,7 +12,7 @@ class TodosView(View):
         todo_form = TodosForm()
         todo_items = Todos.objects.all()
         context = {'form': todo_form, 'items': todo_items}
-        return render(request, "todos/base.html", context)
+        return render(request, "todos/index.html", context)
 
     def post(self, request, *args, **kwargs):
         title_of_task = request.POST.get('title')
@@ -20,7 +20,7 @@ class TodosView(View):
         todo_form = TodosForm()
         todo_items = Todos.objects.all()
         context = {'form': todo_form, 'items': todo_items}
-        return render(request, "todos/base.html", context)
+        return render(request, "todos/index.html", context)
 
 
 class DeleteTodo(RedirectView):
