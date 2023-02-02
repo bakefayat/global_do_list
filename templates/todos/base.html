@@ -48,7 +48,6 @@
                 <tr>
                   <th scope="col">شماره</th>
                   <th scope="col">توضیح</th>
-                  <th scope="col">وضعیت</th>
                   <th scope="col">تغییر وضعیت</th>
                 </tr>
               </thead>
@@ -57,24 +56,25 @@
               {% for item in items %}
                 <tr>
                   <th scope="row">{{ forloop.counter }}</th>
-                  <td>
                       {% if item.status == '1' %}
-                          <del>{{ item.title }}</del>
+                          <td>
+                              <del>{{ item.title }}</del>
+                          </td>
+                          <td>
+                            <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
+                            <button type="submit" class="btn btn-success ms-1">هنوز مونده</button>
+                          </form>
+
                       {% else %}
+                        <td>
                           {{ item.title }}
+                        </td>
+                        <td>
+                          <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
+                            <button type="submit" class="btn btn-success ms-1">تمومش کردم!</button>
+                          </form>
                       {% endif %}
-                  </td>
-                    <td>
-                     {% if item.status == '1' %}
-                         انجام شده
-                    {% elif item.status == '0' %}
-                         انجام نشده
-                     </td>
-                    {% endif %}
-                  <td>
-                    <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
-                        <button type="submit" class="btn btn-success ms-1">پایان یافته</button>
-                    </form>
+
                     <form class="d-inline" action="{% url 'todos:delete_todo' item.id %}">
                       <button type="submit" class="btn btn-danger">حذف</button>
                     </form>
