@@ -16,7 +16,7 @@ class Todos(models.Model):
     creator = models.ForeignKey(users(), on_delete=models.SET_NULL, related_name="tasks", null=True,
                                 blank=True, verbose_name='سازنده')
     destination = models.ForeignKey(users(), on_delete=models.CASCADE, null=True, blank=True, verbose_name='وظیفه کاربر')
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=0, verbose_name='وضعیت')
+    status = models.IntegerField(choices=STATUS_CHOICES, default=0, verbose_name='وضعیت')
     unique_id = models.UUIDField(default=uuid.uuid4(), editable=False, unique=True)
 
     def __str__(self):
