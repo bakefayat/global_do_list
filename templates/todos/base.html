@@ -61,7 +61,7 @@
                               <del>{{ item.title }}</del>
                           </td>
                           <td>
-                            <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
+                            <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
                             <button type="submit" class="btn btn-success ms-1">هنوز مونده</button>
                           </form>
 
@@ -70,12 +70,12 @@
                           {{ item.title }}
                         </td>
                         <td>
-                          <form class="d-inline" action="{% url 'todos:change_todo' item.id %}">
+                          <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
                             <button type="submit" class="btn btn-success ms-1">تمومش کردم!</button>
                           </form>
                       {% endif %}
 
-                    <form class="d-inline" action="{% url 'todos:delete_todo' item.id %}">
+                    <form class="d-inline" action="{% url 'todos:delete_todo' item.unique_id %}">
                       <button type="submit" class="btn btn-danger">حذف</button>
                     </form>
                   </td>
