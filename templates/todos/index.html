@@ -45,11 +45,13 @@
                 </td>
                 <td>
                   <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
+                    {% csrf_token %}
                     <button type="submit" class="btn btn-success ms-1">تمومش کردم!</button>
                   </form>
               {% endif %}
 
             <form class="d-inline" action="{% url 'todos:delete_todo' item.unique_id %}">
+                {% csrf_token %}
               <button type="submit" class="btn btn-danger">حذف</button>
             </form>
           </td>
