@@ -1,26 +1,19 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, RedirectView
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import RedirectView, CreateView
 
-from core.utils import create_new_task
 from .forms import TodosForm
 from .models import Todos
-# Create your views here.
 
 
-class TodosView(View):
-    def get(self, request, *args, **kwargs):
-        todo_form = TodosForm()
-        todo_items = Todos.objects.all()
-        context = {'form': todo_form, 'items': todo_items}
-        return render(request, "todos/index.html", context)
+class TodosView(CreateView):
+    form_class = TodosForm
+    success_url = reverse_lazy('todos:todos_view')
+    template_name = 'todos/index.html'
 
-    def post(self, request, *args, **kwargs):
-        title_of_task = request.POST.get('title')
-        create_new_task(title_of_task)
-        todo_form = TodosForm()
-        todo_items = Todos.objects.all()
-        context = {'form': todo_form, 'items': todo_items}
-        return render(request, "todos/index.html", context)
+    def get_context_data(self, **kwargs):
+        kwargs['items'] = Todos.objects.all()
+        return super(TodosView, self).get_context_data(**kwargs)
 
 
 class DeleteTodo(RedirectView):

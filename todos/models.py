@@ -2,8 +2,10 @@ from django.db import models
 from django.contrib.auth import get_user_model as users
 import uuid
 
+from core.models import TimeStampedModel
 
-class Todos(models.Model):
+
+class Todos(TimeStampedModel):
     class Meta:
         verbose_name = 'وظیفه'
         verbose_name_plural = 'وظایف'
@@ -21,3 +23,8 @@ class Todos(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.unique_id:
+            self.unique_id = uuid.uuid4()
+        super(Todos, self).save(*args, **kwargs)
