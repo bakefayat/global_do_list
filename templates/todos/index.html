@@ -14,8 +14,14 @@
       <div class="col-12">
         <button type="submit" class="btn btn-primary">ثبت</button>
       </div>
-
     </form>
+
+    {% if form.title.errors %}
+        {% for error in form.title.errors %}
+            <i>{{ error }}</i>
+        {% endfor %}
+    {% endif %}
+
     {% if items %}
     <table class="table mb-4">
       <thead>
