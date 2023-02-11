@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 09:03+0330\n"
+"POT-Creation-Date: 2023-02-11 09:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\todos\models.py:12
+#: .\models.py:12
 msgid "todo"
 msgstr "وظیفه"
 
-#: .\todos\models.py:13
+#: .\models.py:13
 msgid "todos"
 msgstr "وظایف"
 
-#: .\todos\models.py:16
+#: .\models.py:16
 msgid "completed"
 msgstr "انجام شده"
 
-#: .\todos\models.py:17
+#: .\models.py:17
 msgid "working on it"
 msgstr "در دست اقدام"
 
-#: .\todos\models.py:19
+#: .\models.py:19
 msgid "title"
 msgstr "عنوان"
 
-#: .\todos\models.py:20
+#: .\models.py:20
 msgid "minimum length should be 3 characters"
 msgstr "حداقل طول باید 3 کاراکتر باشد"
 
-#: .\todos\models.py:22
+#: .\models.py:22
 msgid "creator"
 msgstr "سازنده"
 
-#: .\todos\models.py:23
+#: .\models.py:23
 msgid "destination"
 msgstr "کاربر مقصد"
 
-#: .\todos\models.py:24
+#: .\models.py:24
 msgid "status"
 msgstr "وضعیت"

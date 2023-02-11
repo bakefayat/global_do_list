@@ -1,13 +1,14 @@
 {% extends 'todos/base.html' %}
+{% load i18n %}
 {% block main %}
-    <h4 class="text-center my-3 pb-3">کارهای روزانه</h4>
+    <h4 class="text-center my-3 pb-3">{% trans 'todo list' %}</h4>
 
     <form method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
         {% csrf_token %}
       <div class="col-12">
         <div class="form-outline">
           <input type="text" name="title" id="form1" class="form-control" />
-          <label class="form-label" for="form1">کاری را وارد کنید</label>
+          <label class="form-label" for="form1">{% trans 'enter new task'  %}</label>
         </div>
       </div>
 
@@ -26,9 +27,9 @@
     <table class="table mb-4">
       <thead>
         <tr>
-          <th scope="col">شماره</th>
-          <th scope="col">توضیح</th>
-          <th scope="col">تغییر وضعیت</th>
+          <th scope="col">{% trans "num" %}</th>
+          <th scope="col">{% trans "title" %}</th>
+          <th scope="col">{% trans "status" %}</th>
         </tr>
       </thead>
       <tbody>
@@ -42,7 +43,7 @@
                   </td>
                   <td>
                     <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
-                    <button type="submit" class="btn btn-success ms-1">هنوز مونده</button>
+                    <button type="submit" class="btn btn-success ms-1">{% trans "working on it" %}</button>
                   </form>
 
               {% else %}
@@ -52,18 +53,18 @@
                 <td>
                   <form class="d-inline" action="{% url 'todos:change_todo' item.unique_id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success ms-1">تمومش کردم!</button>
+                    <button type="submit" class="btn btn-success ms-1">{% trans "completed" %}</button>
                   </form>
               {% endif %}
 
             <form class="d-inline" action="{% url 'todos:delete_todo' item.unique_id %}">
                 {% csrf_token %}
-              <button type="submit" class="btn btn-danger">حذف</button>
+              <button type="submit" class="btn btn-danger">{% trans "delete" %}</button>
             </form>
           </td>
         </tr>
         {% empty %}
-        تسکی فعلا وجود نداره! نظرت چیه اولین تسک ات رو اضافه کنی؟
+        {% trans 'task list is empty. would you like to create your first task?' %}
       {% endfor %}
       </tbody>
     </table>
